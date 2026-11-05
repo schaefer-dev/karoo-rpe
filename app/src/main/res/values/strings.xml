@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ride Rating (RPE)</string>
+    <string name="extension_name">Ride Rating (RPE)</string>
+    <string name="field_name">Ride Rating</string>
+    <string name="field_desc">Shows your RPE and Feel for this ride. Tap to rate; saved to the FIT file for intervals.icu.</string>
+    <string name="field_title">RPE</string>
+    <string name="tap_to_rate">Tap to rate</string>
+</resources>

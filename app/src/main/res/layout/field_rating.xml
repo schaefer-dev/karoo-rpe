@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rating_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <!-- Small field title, "RPE". -->
+    <TextView
+        android:id="@+id/rating_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="2dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:includeFontPadding="false"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:textColor="#FFFFFFFF"
+        android:text="" />
+
+    <!-- Main value. autoSizeTextType="uniform" lets the text grow/shrink to fill the tile,
+         matching the built-in numeric fields instead of a fixed size. Regular weight (not bold),
+         like Karoo's built-in colored fields. -->
+    <TextView
+        android:id="@+id/rating_value"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="60sp"
+        android:textColor="#FFFFFFFF"
+        android:text="—" />
+</LinearLayout>

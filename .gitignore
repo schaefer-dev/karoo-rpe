@@ -1,0 +1,19 @@
+*.iml
+.env`
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+/app/release
+/app/build
+Claude.md
+scripts
+
+# Secrets (intervals.icu API key)
+.env
+.env.*

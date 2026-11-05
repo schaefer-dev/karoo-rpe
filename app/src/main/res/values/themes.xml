@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Compose supplies its own Material3 theming; the Activity just needs a no-action-bar
+         platform theme as a base. -->
+    <style name="Theme.KarooRpe" parent="@android:style/Theme.Material.NoActionBar" />
+</resources>

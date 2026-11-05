@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ExtensionInfo
+    displayName="@string/extension_name"
+    id="karoo_rpe"
+    scansDevices="false"
+    fitFile="true">
+
+    <DataType
+        typeId="ride_rating"
+        displayName="@string/field_name"
+        description="@string/field_desc"
+        graphical="true" />
+</ExtensionInfo>

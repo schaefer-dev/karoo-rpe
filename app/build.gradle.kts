@@ -6,8 +6,8 @@ plugins {
 
 /**
  * intervals.icu API key, read from the git-ignored `.env` at the repo root
- * (`INTERVALS_ICU_API_KEY=...`). Only debug builds get it, so a release APK that might be
- * shared never contains the key. Empty → intervals.icu sync is disabled.
+ * (`INTERVALS_ICU_API_KEY=...`). Only debug and `personal` builds get it, so a release APK that
+ * might be shared never contains the key. Empty → intervals.icu sync is disabled.
  */
 val intervalsApiKey: String = rootProject.file(".env").takeIf { it.exists() }
     ?.readLines()
@@ -44,6 +44,13 @@ android {
             // (same approach as other community Karoo extensions).
             signingConfig = signingConfigs.getByName("debug")
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        // Release build for your own Karoo: not debuggable (no simulator), but with the API key
+        // from .env built in so it works without on-device setup. Never share this APK.
+        create("personal") {
+            initWith(getByName("release"))
+            buildConfigField("String", "INTERVALS_API_KEY", "\"$intervalsApiKey\"")
+            matchingFallbacks += "release"
         }
     }
     compileOptions {

@@ -151,6 +151,8 @@ class IntervalsSyncer(
         r.status in 200..299 -> null
         r.status == 401 || r.status == 403 -> SyncOutcome.Fatal("intervals.icu rejected the API key (HTTP ${r.status})")
         r.status == 0 -> SyncOutcome.Retry(r.error ?: "no connection")
+        // Other client errors won't fix themselves; don't keep retrying them for hours.
+        r.status in 400..499 && r.status != 408 && r.status != 429 -> SyncOutcome.Fatal("HTTP ${r.status}")
         else -> SyncOutcome.Retry("HTTP ${r.status}")
     }
 }

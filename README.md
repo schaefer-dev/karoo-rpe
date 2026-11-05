@@ -70,11 +70,12 @@ Sync needs your personal API key (intervals.icu → *Settings* → *Developer Se
 INTERVALS_ICU_API_KEY=your-key-here
 ```
 
-The key is compiled into **debug builds only**. Release builds never contain it and have sync
-turned off; they only write the FIT developer fields.
+The key is compiled into **debug** and **personal** builds only. Release builds never contain it
+and have sync turned off; they only write the FIT developer fields. The personal build is a
+release build (not debuggable) with the key built in, meant for your own Karoo.
 
 > [!WARNING]
-> A debug APK built with your key contains that key. Don't share it or publish it.
+> A debug or personal APK built with your key contains that key. Don't share it or publish it.
 
 ### Build
 
@@ -93,6 +94,8 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)   # macOS
 ./gradlew :app:testDebugUnitTest
 ./gradlew :app:assembleDebug
 # → app/build/outputs/apk/debug/karoo_rpe-<version>-debug.apk
+./gradlew :app:assemblePersonal   # release build with your key, for your own Karoo
+# → app/build/outputs/apk/personal/karoo_rpe-<version>-personal.apk
 ```
 
 ### Install
@@ -100,7 +103,7 @@ export JAVA_HOME=$(/usr/libexec/java_home -v 17)   # macOS
 With the Karoo connected over USB (developer mode on):
 
 ```sh
-adb install -r app/build/outputs/apk/debug/karoo_rpe-*-debug.apk
+adb install -r app/build/outputs/apk/personal/karoo_rpe-*-personal.apk
 ```
 
 ## How it works

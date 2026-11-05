@@ -91,6 +91,17 @@ class IntervalsSyncTest {
     }
 
     @Test
+    fun `permanent client errors are fatal, throttling and timeouts retry`() = runTest {
+        assertTrue(IntervalsSyncer("k") { HttpResult(404, null) }.attempt(pending()) is SyncOutcome.Fatal)
+        val putRejected = IntervalsSyncer("k") { req ->
+            if (req.method == "GET") HttpResult(200, listJson) else HttpResult(422, null)
+        }
+        assertTrue(putRejected.attempt(pending()) is SyncOutcome.Fatal)
+        assertTrue(IntervalsSyncer("k") { HttpResult(429, null) }.attempt(pending()) is SyncOutcome.Retry)
+        assertTrue(IntervalsSyncer("k") { HttpResult(408, null) }.attempt(pending()) is SyncOutcome.Retry)
+    }
+
+    @Test
     fun `runSync retries with backoff until the activity appears`() = runTest {
         var listCalls = 0
         val syncer = IntervalsSyncer("k") { req ->
